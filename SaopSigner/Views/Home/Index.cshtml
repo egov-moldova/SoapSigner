@@ -1,0 +1,57 @@
+﻿@model MessageModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 form-horizontal">
+            <a data-toggle="collapse" href="#collaps1"><strong>Endpoint Settings</strong></a>
+            @using (Html.BeginForm("SignMessage", "Home", FormMethod.Post))
+            {
+                <div id="collaps1" class="panel-collapse collapse" style="padding-left: 20px;">
+                    <div class="form-group">
+                        <label class="control-label">Service Endpoint</label>
+                        <input class="input-group form-control" asp-for="@Model.Endpoint" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Soap Action</label>
+                        <input class="input-group form-control" asp-for="@Model.SoapAction" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Request headers</label>
+                        @Html.TextAreaFor(m => m.RequestHeaders, new { @class = "input-group form-control", rows = 4, placeholder = "CallingEntity: 0000000000000\n\rCallingUser: 0000000000000\n\rCallBasis: Test\n\rCallReason: Test", style = " resize: none;" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Request body (XML node)</label>
+                    @Html.TextAreaFor(m => m.RequestBody, new { @class = "input-group form-control", style = "resize: none;", rows = 11, autofocus=true})
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name="Type" value="SOAP11">Soap11</button>
+                    <button type="submit" class="btn btn-primary" name="Type" value="SOAP12">Soap12</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-6 col-sm-6 form-horizontal">
+            <div class="form-group">
+                <label class="control-label">Signed request</label>
+                @Html.TextAreaFor(m => m.Request, new { @class = "input-group form-control", rows = "15", style = "resize: none;", disabled = true })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 form-horizontal">
+            <div>
+                <label class="control-label">Response body</label>
+                @Html.TextAreaFor(m => m.ResponseBody, new { @class = "input-group form-control", rows = "15", style = "resize: none;", disabled = true })
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 form-horizontal">
+            <div class="form-group">
+                <label class="control-label">Signed response</label>
+                @Html.TextAreaFor(m => m.Response, new { @class = "input-group form-control", rows = "15", style = "resize: none;", disabled = true })
+            </div>
+        </div>
+    </div>
+</div>

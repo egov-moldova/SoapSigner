@@ -1,0 +1,11 @@
+**/*.cer
+**/*.pfx
+\.vs/
+
+SaopSigner/bin/
+
+SaopSigner/obj/
+
+Client/bin/
+
+Client/obj/
